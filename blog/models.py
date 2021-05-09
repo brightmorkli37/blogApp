@@ -16,6 +16,7 @@ class Blog(models.Model):
 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=105)
+    cover_image = models.ImageField(upload_to='images/', blank=True, null=True)
     body = models.TextField()
     date_published = models.DateTimeField()
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
