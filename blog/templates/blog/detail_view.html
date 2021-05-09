@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+  <div class="container">
+    {% block content %}
+        <h3>{{blog.title}}</h3>
+        <p>{{blog.body}}</p>
+    {% endblock %}
+  </div>
+
+
+
+
+<h2><a href="{% url 'index' %}">Back to Home</a></h2>
