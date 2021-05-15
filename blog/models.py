@@ -1,17 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(unique=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
 class Blog(models.Model):
 
     STATUS_CHOICES = (
         ('draft', 'draft'),
         ('published', 'published')
-    )
-
-    CATEGORY_CHOICES = (
-        ('software', 'software'),
-        ('technology', 'technology'),
-        ('news', 'news')
     )
 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -20,7 +26,7 @@ class Blog(models.Model):
     body = models.TextField()
     date_published = models.DateTimeField()
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
-    category = models.CharField(max_length=10, choices=CATEGORY_CHOICES)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, max_length=50)
 
     def __str__(self):
         return self.title

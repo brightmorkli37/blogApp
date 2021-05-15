@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Blog
+from .models import Blog, Category
 
 class BlogAdmin(admin.ModelAdmin):
     list_display = ('id', 'author', 'title', 'date_published')
@@ -7,3 +7,4 @@ class BlogAdmin(admin.ModelAdmin):
     search_fields = ('title', 'body')
 
 admin.site.register(Blog, BlogAdmin)
+admin.site.register(Category)
