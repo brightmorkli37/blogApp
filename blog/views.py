@@ -13,3 +13,9 @@ def detail_view(request, id):
     template_name = 'blog/detail_view.html'
     context = {'blog': blog}
     return render(request, template_name, context)
+
+def category_view(request, cat):
+    post_categories = Blog.objects.filter(category=cat)
+    template_name = 'blog/categories.html'
+    context = {'posts': post_categories}
+    return render(request, template_name, context)

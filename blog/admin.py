@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Blog, Category
 
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ('id', 'author', 'title', 'date_published')
+    list_display = ('author', 'title', 'date_published')
     list_filter = ('status', 'category')
     search_fields = ('title', 'body')
 
