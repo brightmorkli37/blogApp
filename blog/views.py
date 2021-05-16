@@ -19,3 +19,13 @@ def category_view(request, cat):
     template_name = 'blog/categories.html'
     context = {'posts': post_categories}
     return render(request, template_name, context)
+
+def user_login(request):
+    template_name = 'blog/login.html'
+    context = {}
+    return render(request, template_name, context)
+
+def user_signup(request):
+    template_name = 'blog/register.html'
+    context = {}
+    return render(request, template_name, context)
