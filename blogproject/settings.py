@@ -40,8 +40,14 @@ INSTALLED_APPS = [
 
     #custom apps
     'blog',
+    # 'crispy_forms',
+    'bootstrap4'
     # 'tinymce',
 ]
+# CRISPY_TEMPLATE_PACK = 'uni_form'
+
+# LOGIN_REDIRECT_URL = ''
+# LOGOUT_REDIRECT_URL = 'template_name'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

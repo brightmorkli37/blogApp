@@ -1,5 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Blog, Category
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from .forms import NewUserForm
 
 def index(request):
     blogs = Blog.objects.filter(status='published')
@@ -21,11 +24,42 @@ def category_view(request, cat):
     return render(request, template_name, context)
 
 def user_login(request):
-    template_name = 'blog/login.html'
-    context = {}
-    return render(request, template_name, context)
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            messages.success(request, 'Login Successful')
+            return redirect('index')
+        else:
+            messages.success(request, 'Login failed...pls try again')
+            return redirect('login')
+    else:
+        return render(request, 'blog/login.html')
+
+    # template_name = 'blog/login.html'
+    # context = {}
+    # return render(request, template_name, context)
+
+def user_logout(request):
+    logout(request)
+    return redirect('index')
 
 def user_signup(request):
+    form = NewUserForm
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Registration successful." )
+            return redirect("index")
+        else:
+            messages.error(request, "Unsuccessful registration. Invalid information.")
+            form = NewUserForm
+	
     template_name = 'blog/register.html'
-    context = {}
+    context = {"form": form}
     return render(request, template_name, context)
