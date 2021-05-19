@@ -40,14 +40,16 @@ INSTALLED_APPS = [
 
     #custom apps
     'blog',
-    # 'crispy_forms',
-    'bootstrap4'
+    'crispy_forms',
+    'bootstrap4',
+    'bootstrap_datepicker_plus'
     # 'tinymce',
 ]
-# CRISPY_TEMPLATE_PACK = 'uni_form'
+CRISPY_TEMPLATE_PACK = 'uni_form'
 
-# LOGIN_REDIRECT_URL = ''
-# LOGOUT_REDIRECT_URL = 'template_name'
+# BOOTSTRAP4 = {
+#     'include_jquery': True,
+# }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Blog
+from bootstrap_datepicker_plus import DatePickerInput
 
 class NewUserForm(UserCreationForm):
     first_name = forms.CharField(max_length=30)
@@ -20,3 +22,16 @@ class NewUserForm(UserCreationForm):
             if commit:
                 user.save()
             return user
+
+class PostForm(forms.ModelForm):
+
+    class Meta:
+        model = Blog
+        # fields = "__all__"
+        exclude = ('author',)
+        # widgets = {
+        #     'date_published': DatePickerInput(format='%Y-%m-%d'),
+        # }
+
+
+form = Blog()

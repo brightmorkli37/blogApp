@@ -2,7 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Blog, Category
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import NewUserForm
+from .forms import NewUserForm, PostForm
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 
 def index(request):
     blogs = Blog.objects.filter(status='published')
@@ -31,21 +33,16 @@ def user_login(request):
 
         if user is not None:
             login(request, user)
-            messages.success(request, 'Login Successful')
-            return redirect('index')
+            return HttpResponseRedirect(reverse('index'))
+           
         else:
-            messages.success(request, 'Login failed...pls try again')
-            return redirect('login')
+            return render(request, 'blog/login.html', {'message': 'login failed, please try again'})
     else:
         return render(request, 'blog/login.html')
 
-    # template_name = 'blog/login.html'
-    # context = {}
-    # return render(request, template_name, context)
-
 def user_logout(request):
     logout(request)
-    return redirect('index')
+    return HttpResponseRedirect(reverse('index'))
 
 def user_signup(request):
     form = NewUserForm
@@ -54,8 +51,8 @@ def user_signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, "Registration successful." )
-            return redirect("index")
+            # messages.success(request, "Registration successful." )
+            return redirect("user_login")
         else:
             messages.error(request, "Unsuccessful registration. Invalid information.")
             form = NewUserForm
@@ -63,3 +60,29 @@ def user_signup(request):
     template_name = 'blog/register.html'
     context = {"form": form}
     return render(request, template_name, context)
+
+def base_template(request):
+    cat_options = Category.objects.all()
+    template_name = 'blog/base.html'
+    context = {'categories': cat_options}
+    return render(request, template_name, context)
+
+def add_blog(request):
+    form = PostForm()
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+
+            messages.success(request, 'Registration Successful')
+            return redirect('index')
+
+    else:
+        form = PostForm()
+
+    context = {'form': form}
+    return render(request, 'blog/add_blog.html', context)
+
+    # template_name = 'blog/add_blog.html'
+    # context = {}
+    # return render(request, template_name, context)
