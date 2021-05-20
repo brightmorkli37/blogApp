@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 class Category(models.Model):
@@ -25,7 +26,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=105)
     cover_image = models.ImageField(upload_to='images/', blank=True, null=True)
     body = models.TextField()
-    date_published = models.DateTimeField()
+    date_published = models.DateTimeField(default=timezone.now)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, max_length=50)
 

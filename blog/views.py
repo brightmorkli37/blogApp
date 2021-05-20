@@ -68,7 +68,10 @@ def base_template(request):
     return render(request, template_name, context)
 
 def add_blog(request):
+    post = Blog.objects.all()
+    cats = Category.objects.all()
     form = PostForm()
+    message = ""
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
@@ -78,9 +81,11 @@ def add_blog(request):
             return redirect('index')
 
     else:
+        
+        message = "error in forms... please try again"
         form = PostForm()
 
-    context = {'form': form}
+    context = {'form': form, 'message': message, 'posts': post, 'categories': cats}
     return render(request, 'blog/add_blog.html', context)
 
     # template_name = 'blog/add_blog.html'
