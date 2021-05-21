@@ -75,6 +75,9 @@ def add_blog(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
+            form.instance.author = request.user
+            # form.save(commit=False)
+            # form.author = request.user
             form.save()
 
             messages.success(request, 'Registration Successful')

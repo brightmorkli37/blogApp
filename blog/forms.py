@@ -27,8 +27,8 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Blog
-        fields = "__all__"
-        # exclude = ('author',)
+        # fields = "__all__"
+        exclude = ('author',)
         widgets = {
             'date_published': DatePickerInput(format='%Y-%m-%d'),
         }
