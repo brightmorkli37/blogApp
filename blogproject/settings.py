@@ -40,8 +40,16 @@ INSTALLED_APPS = [
 
     #custom apps
     'blog',
+    'crispy_forms',
+    'bootstrap4',
+    'bootstrap_datepicker_plus'
     # 'tinymce',
 ]
+CRISPY_TEMPLATE_PACK = 'uni_form'
+
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

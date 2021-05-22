@@ -16,53 +16,87 @@
     
 <meta name="theme-color" content="#7952b3">
 
-
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+      
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+      body {
+      background-color: gainsboro;
+    }
+      .blog-header {
+    line-height: 1;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  .blog-header-logo {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+    font-size: 2.25rem;
+  }
+  
+  .blog-header-logo:hover {
+    text-decoration: none;
+  
+  }
     </style>
 
-    
-    <!-- Custom styles for this template -->
-    <link href="{% static 'blog/login.css' %}" rel="stylesheet">
+  
   </head>
-  <body class="text-center">
-    
-<main class="form-signin">
-  <form method="" action="{% url 'index' %}">
-    <!-- <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
-    <h1 class="h3 mb-3 fw-normal">The Gh Blog</h1>
-
-    <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
+  <body>
+    <div class="container">
+      <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+          <div class="text-center">
+            <a class="blog-header-logo text-dark" href="{% url 'index' %}">The Gh Blog</a>
+          </div>
+        </div>
+      </header>
     </div>
 
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">
+                <h3 style="text-align: center;">Login</h3>
+              </div>
+              {% if message %}
+              <div class="alert alert-warning" role="alert">
+                {{message}}
+              </div>              
+              {% endif %}
+              <main class="form-signin text-center">
+                <form method="post">
+                  {% csrf_token %}
+              
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" name="username">
+                    <label for="floatingInput">Username</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingPassword" name="password">
+                    <label for="floatingPassword">Password</label>
+                  </div>
+              
+                  <div class="checkbox mb-3">
+                    <label>
+                      <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                  </div>
+                  <button class="w-100 btn btn-lg btn-primary" type="submit" value="Submit">Login</button>
+                  
+                </form>
+                <div class="recover-pwd">
+                  <h5 class="mt-4"><a href="#">forgot password?</a></h5>
+                </div>
+                <div class="recover-pwd">
+                  <h6 class="mt-4"><a href="{% url 'user_signup' %}">create new account</a></h6>
+                </div>
+              </main>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit" value="Submit">Login</button>
-    
-  </form>
-</main>
-
 
     
   </body>
