@@ -1,10 +1,5 @@
 {% extends 'blog/base.html' %}
 {% load static %}
-{% load bootstrap4 %}
-{% bootstrap_css %}
-{% bootstrap_javascript jquery='full' %}
-{% load crispy_forms_tags %} -->
-{{ form.media }}            {# Adds date-picker required JS and CSS #}
 
     {% block content %}
         <div class="add-post-header mt-4 mb-4" style="text-align: center;">
@@ -44,29 +39,28 @@
                   <div class="row mb-3">
                     <div class="col">
                       <label for="status" class="form-label">Status</label>
-                      <!-- <select name="status" class="form-control">
-                          <option value="">---------</option>
-                          <option value="">draft</option>
-                          <option value="">published</option>
-                      </select> -->
-                      {{form.status}}
+                      <select name="status" class="form-control">
+                          <option value="">--select--</option>
+                          <option value="draft">draft</option>
+                          <option value="published">published</option>
+                      </select>
+                      <!-- {{form.status}} -->
                     </div>
                     <div class="col">
                       <label for="category" class="form-label">Category</label>
-                      <!-- <select name="category" class="form-control">
-                        <option value="">----------</option>
+                      <select name="category" class="form-control">
+                        <option value="">--select--</option>
                         {% for c in categories %}
-                          <option value="">{{c}}</option>
+                          <option value="{{c.id}}">{{c}}</option>
                         {% endfor %}
-                      </select> -->
-                      {{form.category}}
+                      </select>
+                      <!-- {{form.category}} -->
                     </div>
                   </div>
                   <div class="row mb-3">
                     <div class="col">
                       <label for="body" class="form-label">Post Body</label>
                       <textarea name="body" class="form-control" cols="30" rows="10"></textarea>
-                      <!-- {{form.body|as_crispy_field}} -->
                     </div>
                   </div>
                   <div class="d-grid gap-2 col-6 mx-auto mb-5">
