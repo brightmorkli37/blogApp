@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Blog
+# from tinymce.widgets import TinyMCE
 
 class NewUserForm(UserCreationForm):
     first_name = forms.CharField(max_length=30)
@@ -28,6 +29,9 @@ class PostForm(forms.ModelForm):
         model = Blog
         # fields = "__all__"
         exclude = ('author',)
+        # widgets = {
+        #     'body': TinyMCE(attrs={'cols': 80, 'rows': 30})
+        # }
 
 
 form = Blog()

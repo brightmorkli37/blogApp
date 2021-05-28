@@ -22,7 +22,7 @@ def detail_view(request, id):
 def category_view(request, cat):
     post_categories = Blog.objects.filter(category=cat)
     template_name = 'blog/categories.html'
-    context = {'posts': post_categories}
+    context = {'posts': post_categories, 'cat': cat}
     return render(request, template_name, context)
 
 def user_login(request):

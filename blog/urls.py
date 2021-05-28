@@ -7,7 +7,7 @@ urlpatterns = [
     path('logout/', views.user_logout, name='user_logout'),
     path('register/', views.user_signup, name='user_signup'),
     path('<int:id>/', views.detail_view, name='detail_view' ),
-    path('category/<str:cat>/', views.category_view, name='category_view'),
+    path('category/<str:cat>/', views.category_view, name='category'),
     path('base/', views.base_template, name='base_template'),
     path('write_post', views.add_blog, name='add_blog'),
 ]

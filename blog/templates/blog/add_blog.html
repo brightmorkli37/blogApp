@@ -10,6 +10,7 @@
             <div class="col-md-6 offset-md-3">
                <form method="post" enctype="multipart/form-data">
                {% csrf_token %}
+               {{form.media}}
                 <div class="row mb-3">
                     <div class="col">
                       <label for="title" class="form-label">Post title</label>
@@ -58,10 +59,12 @@
                     </div>
                   </div>
                   <div class="row mb-3">
-                    <div class="col">
+                    <!-- <div class="col">
                       <label for="body" class="form-label">Post Body</label>
                       <textarea name="body" class="form-control" cols="30" rows="10"></textarea>
-                    </div>
+                    </div> -->
+                    <label for="body" class="form-label">Post Body</label>
+                    {{form.body}}
                   </div>
                   <div class="d-grid gap-2 col-6 mx-auto mb-5">
                     <button class="btn btn-primary" type="submit" value="Submit">Post Blog</button>
