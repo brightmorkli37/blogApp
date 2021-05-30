@@ -7,12 +7,12 @@ from django.urls import reverse
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
-
+    slug = models.SlugField(blank=True, null=True, max_length=50)
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('index')
+        return reverse('index')  # , kwargs={'pk': self.name}
 
     class Meta:
         verbose_name = 'Category'
@@ -33,7 +33,7 @@ class Blog(models.Model):
     body = RichTextField()
     date_published = models.DateTimeField(default=timezone.now)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, max_length=50)
+    category = models.ForeignKey(Category, related_name='posts', on_delete=models.CASCADE, max_length=50)
 
     def summary(self):
         return self.body[:120]

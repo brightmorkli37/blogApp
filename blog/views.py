@@ -19,10 +19,11 @@ def detail_view(request, id):
     context = {'blog': blog}
     return render(request, template_name, context)
 
-def category_view(request, cat):
-    post_categories = Blog.objects.filter(category=cat)
+def category(request, cats):
+    category = get_object_or_404(Category, name=cats)
+    posts = Blog.objects.filter(category=category)
     template_name = 'blog/categories.html'
-    context = {'posts': post_categories, 'cat': cat}
+    context = {'category': category, 'posts': posts}
     return render(request, template_name, context)
 
 def user_login(request):
