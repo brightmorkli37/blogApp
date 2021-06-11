@@ -7,7 +7,6 @@ from django.urls import reverse
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
-    slug = models.SlugField(blank=True, null=True, max_length=50)
     
     def __str__(self):
         return self.name
@@ -37,7 +36,7 @@ class Blog(models.Model):
     category = models.ForeignKey(Category, related_name='posts', on_delete=models.CASCADE, max_length=50)
 
     def summary(self):
-        return self.body[:120]
+        return self.body[:65]
 
     def __str__(self):
         return self.title

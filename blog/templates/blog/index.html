@@ -5,7 +5,7 @@
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
       {% for category in categories %}
-      <a class="p-2 link-secondary" href="{% url 'category' category.slug %}">{{ category|title }}</a>
+      <a class="p-2 link-secondary" href="{% url 'category' category.name %}">{{ category|title }}</a>
       {% endfor %}
     </nav>
   </div>
@@ -58,7 +58,6 @@
           
         </div>
         <div class="col-auto d-none d-lg-block">
-          <!-- <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
           <img src="{{blog.cover_image.url}}" alt="" class="bd-placeholder-img" width="200" height="250">
           {% endfor %}
         </div>
