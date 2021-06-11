@@ -25,6 +25,16 @@
           </div>
         </div>
     </div>
+    {% empty %}
+      <div class="container">
+        <div class="row justify-content-center mt-5 mb-5">
+          <div class="col-auto d-flex">
+            <div class="alert alert-info" role="alert">
+              No blog posts under this category!
+            </div>
+          </div>
+        </div>
+      </div>
     {% endfor %}
   </div>
 </div>
