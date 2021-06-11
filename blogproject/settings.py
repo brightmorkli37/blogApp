@@ -40,10 +40,21 @@ INSTALLED_APPS = [
 
     #custom apps
     'blog',
-    # 'tinymce',
+    'api',
+    'apiv2',
     'ckeditor',
-    # 'content_editor',
+    'graphene_django',
+    'django_filters',
 ]
+
+# api code
+GRAPHENE = {
+  "SCHEMA": "apiv2.schema.schema",
+}
+
+# GRAPHENE = {
+#     "SCHEMA": "django_root.schema.schema"
+# }
 
 
 MIDDLEWARE = [

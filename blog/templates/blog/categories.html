@@ -3,6 +3,10 @@
  
 {% block content %}
 
+<div class="mt-4 mb-4">
+  <h1 style="text-align: center;">{{category|title}}</h1>
+</div>
+
 <div class="container">
   <div class="row mb-2">
     {% for post in category.posts.all %}  
