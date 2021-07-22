@@ -43,36 +43,62 @@
     {{form.media}}
   </head>
   <body>
+
+  {% comment %} New NavBar {% endcomment %}
+<header>
+<div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand blog-header-logo text-dark" href="{% url 'index' %}">The Gh Blog</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link modal-title"  href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Subscribe</a>
+        </li>
+        
+        {% if request.user.is_authenticated %}
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{request.user.username|title}} <i class="far fa-user"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{% url 'add_blog' %}">Add New Blog</a></li>
+            <li><a class="dropdown-item" href="#">My Account</a></li>
+            <li><a class="dropdown-item" href="#">Options</a></li>
+          </ul>
+        </li>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'user_logout' %}"">Logout</a>
+        </li>
+        {% else %}
+          <li class="nav-item">
+          <a class="nav-link" href="{% url 'user_signup' %}">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'user_login' %}">Login</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+</header>
+
+  {% comment %} End of New NavBar {% endcomment %}
     
 <div class="container">
-  <header class="blog-header py-3">
-    <div class="row flex-nowrap justify-content-between align-items-center">
-      <div class="col-4 pt-1">
-        <a class="link-secondary" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Subscribe</a>
-      </div>
-      <div class="col-4 text-center">
-        <a class="blog-header-logo text-dark" href="{% url 'index' %}">The Gh Blog</a>
-      </div>
-      <div class="col-4 d-flex justify-content-end align-items-center">
-        <a class="link-secondary" href="#" aria-label="Search">
-          <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg> -->
-        </a>
-        {% if request.user.is_authenticated %}
-        <a class="btn btn-sm btn-outline-secondary" href="#" data-bs-toggle="modal" data-bs-target="#userAccount">{{request.user.username}} <i class="far fa-user"></i></a>
-        <a class="btn btn-sm btn-outline-secondary" href="{% url 'user_logout' %}">Log Out</a>
-        {% else %}
-        <a class="btn btn-sm btn-outline-secondary" href="{% url 'user_signup' %}">Sign up</a>
-        <a class="btn btn-sm btn-outline-secondary" href="{% url 'user_login' %}">Login</a>
-        {% endif %}
-        
-      </div>
-    </div>
-  </header>
 
   {% block content %}
   {% endblock %}
 
-  <!-- suscribe modal -->
+
+
+<!-- suscribe modal -->
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -101,32 +127,6 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
         <button type="submit" class="btn btn-primary">subscribe</button>
       </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- User account modal -->
-
-<!-- Modal -->
-<div class="modal fade" id="userAccount" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">User: {{user.username}}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="user-options">
-          <button type="button" class="btn btn-outline-info" style="margin-left: 2rem;"><a href="{% url 'add_blog' %}">Add New Blog</a></button>
-          <button type="button" class="btn btn-outline-info" style="margin-left: 2rem;">My Account</button>
-          <button type="button" class="btn btn-outline-info" style="margin-left: 2rem;">Options</button>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
       </div>
     </div>
   </div>
