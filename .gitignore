@@ -1,0 +1,13 @@
+### Django ###
+*.log
+*.pot
+*.pyc
+blogproject/__pycache__/
+blog/__pycache__/
+apiv2/__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+static
+media
+.venv
