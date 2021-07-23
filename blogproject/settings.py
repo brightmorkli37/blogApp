@@ -40,7 +40,6 @@ INSTALLED_APPS = [
 
     #custom apps
     'blog',
-    'api',
     'apiv2',
     'ckeditor',
     'graphene_django',

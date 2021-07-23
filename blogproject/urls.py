@@ -13,10 +13,7 @@ admin.site.index_title = 'Gh Blogs | Administration'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("blog.urls")),
-    path('api/', include("api.urls")),
     path('apiv2/', include("apiv2.urls")),
-    # path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
-    # path('tinymce/', include('tinymce.urls')),
 ]
 
 if settings.DEBUG:
