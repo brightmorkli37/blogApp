@@ -90,7 +90,9 @@
         <div>
           <img class="img-fluid" src="{{blog.cover_image.url}}" alt="" width="600" height="250">
         </div>
-        <p>{{blog.body|safe}}</p>
+        <div class="justify-content-center">
+          <p>{{blog.body|safe}}</p>
+        </div>
         {% endfor %}
       </article>
 

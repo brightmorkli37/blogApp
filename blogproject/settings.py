@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-import django_heroku
-import dj_database_url
+# import django_heroku
+# import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-215lv0@2_8+iqafc$sw0ztwx7$a8^iq(d+4o-0182%i3@h7y_o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['the-gh-blogs.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'the-gh-blogs.herokuapp.com']
 
 
 # Application definition
@@ -61,7 +61,7 @@ GRAPHENE = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -170,4 +170,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # prod_db  =  dj_database_url.config(conn_max_age=500)
 # DATABASES['default'].update(prod_db)
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
