@@ -5,6 +5,9 @@ from ckeditor.fields import RichTextField
 from django.urls import reverse
 
 
+def user_directory_path(instance, filename):
+    return 'images/{0}/{1}'.format(instance.id, filename)
+
 class Category(models.Model):
     name = models.CharField(max_length=50)
     
