@@ -6,4 +6,4 @@
 3. Readers can subscribe to newsletters.
 4. Readers can comment on blogs (upcoming feature.)
 
-## Watch this space for a link to a live demo page of the apllication. Comming soon.
+## Watch this space for a link to a live demo page of the application. Comming soon.
