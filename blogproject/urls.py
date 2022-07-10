@@ -3,14 +3,17 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-admin.site.site_header = 'The Gh Blogs'
-admin.site.site_title = 'The Gh Blogs'
-admin.site.index_title = 'Gh Blogs | Administration'
+admin.site.site_header = 'Pythoneering Django Admin'
+admin.site.site_title = 'Pythoneering Django'
+admin.site.index_title = 'Project Administration'
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("blog.urls")),
+    path('api/', include("app_api.urls")),
+    path('authenticate/', include('rest_framework.urls')),
+   
 ]
 
 
