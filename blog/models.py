@@ -49,3 +49,16 @@ class Blog(models.Model):
 
     class Meta:
         ordering = ('-date_published',)
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    body = models.TextField()
+    date_added = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.body[:100]
+
+    class Meta:
+        ordering = ('-date_added',)
