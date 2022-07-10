@@ -42,9 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #custom apps
+    # custom apps
     'blog',
+
+    # third party apps
     'ckeditor',
+    'corsheaders',
+    'rest_framework',
 
 ]
 
