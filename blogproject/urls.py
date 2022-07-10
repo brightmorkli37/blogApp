@@ -13,8 +13,7 @@ urlpatterns = [
     path('', include("blog.urls")),
     path('api/', include("app_api.urls")),
     path('authenticate/', include('rest_framework.urls')),
-    path('rest_auth/', include('rest_auth.urls')),
-    path('api/rest-auth/registration/', include('rest_auth.registration.urls')),
+   
 ]
 
 
